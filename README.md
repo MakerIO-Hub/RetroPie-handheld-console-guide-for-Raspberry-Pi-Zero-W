@@ -1,4 +1,4 @@
-Raspberry Pi Zero W RetroPie Handheld Console: End-to-End FULL Guide
+# Raspberry Pi Zero W RetroPie Handheld Console: End-to-End FULL Guide
 
 Building a portable retro gaming console from scratch is one of the most rewarding projects in the maker space. However, most guides online are fragmented: getting the SPI display to work breaks the audio, wiring an I2S amplifier causes GPIO pin conflicts, or you end up stuck with the infamous "White Screen of Death" because no hardware driver overlay is loaded. Furthermore, running background Python scripts to poll button presses adds unnecessary CPU overhead, directly hurting emulation frame rates on a single-core board like the Raspberry Pi Zero W.
 
