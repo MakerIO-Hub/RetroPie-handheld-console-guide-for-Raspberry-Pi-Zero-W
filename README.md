@@ -4,6 +4,25 @@ Building a portable retro gaming console from scratch is one of the most rewardi
 
 This master guide brings together a 2.8" ILI9341 TFT SPI display, a MAX98357A I2S digital amplifier, and 10 tactile push buttons on a Raspberry Pi Zero W with zero GPIO conflicts. Instead of CPU-heavy Python polling scripts, the buttons are registered directly at the Linux Kernel level via Device Tree Overlays (gpio-keys), ensuring near-zero CPU overhead and crisp input response. Follow this step-by-step guide to build a plug-and-play, rock-solid, high-performance RetroPie handheld console.
 
+---
+
+## 🔗 Links & Project Resources
+
+* 📺 **YouTube Video:** [Watch the Full Build & Testing Video] https://youtu.be/bb3McqdNa0c
+
+---
+
+### PCB Design & Manufacturing
+
+If you have a schematic but want to speed up the process of generating PCB files, you can try [JLCPCB Layout Service](https://jlcpcb.com?from=MakerIO).
+
+Their professional engineers can turn your schematic into manufacturing-ready PCB files in as little as 3 working days. You can then use the completed PCB files to directly place an order for PCB fabrication or PCBA on JLCPCB.
+
+If you'd like to give this service a try, why not claim a $90 Layout Service coupon first:
+[Claim your $90 Coupon Center](https://jlcpcb.com/coupon-center?from=MakerIO_couponcenter)
+
+---
+
 # Section 1: Bill of Materials (BOM) & Critical Hardware Notes
 
 The components used in this project and the critical details to watch out for during hardware selection are listed below:
