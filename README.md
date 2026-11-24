@@ -6,9 +6,11 @@ This master guide brings together a 2.8" ILI9341 TFT SPI display, a MAX98357A I2
 
 ---
 
-## 🔗 Links & Project Resources
+## 🔗 Youtube Links
 
-* 📺 **YouTube Video:** [Watch the Full Build & Testing Video] https://youtu.be/bb3McqdNa0c
+- 📺 **Part 1 – Full Handheld Build:** [Watch the Full Build & Testing Video](https://youtu.be/bb3McqdNa0c)
+- 📺 **Part 2 – Making It Portable:** [Watch the Portable Power System Build](https://youtu.be/xu1qENdJqgE)
+  
 * 📖 **Portable Power System – Complete Guide:** [View the Portable Upgrade Guide](https://github.com/MakerIO-Hub/Making-a-Raspberry-Pi-Zero-W-Retro-Game-Handheld-Portable/blob/main/README.md)
 
 ---
