@@ -2,7 +2,7 @@
 
 Building a portable retro gaming console from scratch is one of the most rewarding projects in the maker space. However, most guides online are fragmented: getting the SPI display to work breaks the audio, wiring an I2S amplifier causes GPIO pin conflicts, or you end up stuck with the infamous "White Screen of Death" because no hardware driver overlay is loaded. Furthermore, running background Python scripts to poll button presses adds unnecessary CPU overhead, directly hurting emulation frame rates on a single-core board like the Raspberry Pi Zero W.
 
-This master guide brings together a 2.8" ILI9341 TFT SPI display, a MAX98357A I2S digital amplifier, and 10 tactile push buttons on a Raspberry Pi Zero W with zero GPIO conflicts. Instead of CPU-heavy Python polling scripts, the buttons are registered directly at the Linux Kernel level via Device Tree Overlays (gpio-keys), ensuring near-zero CPU overhead and crisp input response. Follow this step-by-step guide to build a plug-and-play, rock-solid, high-performance RetroPie handheld console.
+This master guide brings together a 2.8" ILI9341 TFT SPI display, a MAX98357A I2S digital amplifier, and 12 tactile push buttons on a Raspberry Pi Zero W with zero GPIO conflicts. Instead of CPU-heavy Python polling scripts, the buttons are registered directly at the Linux Kernel level via Device Tree Overlays (gpio-keys), ensuring near-zero CPU overhead and crisp input response. Follow this step-by-step guide to build a plug-and-play, rock-solid, high-performance RetroPie handheld console.
 
 ---
 
@@ -94,32 +94,24 @@ To prevent hardware peripherals from contending for the same GPIO pins, the SPI0
 | DIN           | Pin 40                  | GPIO 21 (PCM_DOUT)  |
 | ---           | ---                     | ---                 |
 
-## 10-Button Control Matrix Wiring
+## 12-Button Control Matrix Wiring
 
-_Note: Connect one leg of each tactile switch to its designated GPIO pin below, and connect the other leg to a common Ground (GND) line. Because internal pull-up resistors are enabled in software via the Device Tree overlay, external resistors are not required._
+*Note: Connect one leg of each tactile switch to its designated GPIO pin below, and connect the other leg to a common Ground (GND) line. Because internal pull-up resistors are enabled in software via the Device Tree overlay, external resistors are not required.*
 
-| Button Function | Raspberry Pi Header Pin | BCM GPIO | Hardware Conflict-Avoidance Note                                                    |
-| --------------- | ----------------------- | -------- | ----------------------------------------------------------------------------------- |
-| D-Pad Up        | Pin 7                   | GPIO 4   | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| D-Pad Down      | Pin 11                  | GPIO 17  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| D-Pad Left      | Pin 13                  | GPIO 27  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| D-Pad Right     | Pin 15                  | GPIO 22  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Button A        | Pin 29                  | GPIO 5   | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Button B        | Pin 31                  | GPIO 6   | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Button X        | Pin 33                  | GPIO 13  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Button Y        | Pin 37                  | GPIO 26  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Start           | Pin 36                  | GPIO 16  | Standard GPIO                                                                       |
-| ---             | ---                     | ---      | ---                                                                                 |
-| Select (Hotkey) | Pin 38                  | GPIO 12  | **Critical: GPIO 20 conflicts with the I2S audio bus, so GPIO 12 is used instead.** |
-| ---             | ---                     | ---      | ---                                                                                 |
+| Button Function | Raspberry Pi Header Pin | BCM GPIO | Hardware Conflict-Avoidance Note |
+| :--- | :--- | :--- | :--- |
+| D-Pad Up | Pin 7 | GPIO 4 | Standard GPIO |
+| D-Pad Down | Pin 11 | GPIO 17 | Standard GPIO |
+| D-Pad Left | Pin 13 | GPIO 27 | Standard GPIO |
+| D-Pad Right | Pin 15 | GPIO 22 | Standard GPIO |
+| Button A | Pin 29 | GPIO 5 | Standard GPIO |
+| Button B | Pin 31 | GPIO 6 | Standard GPIO |
+| Button X | Pin 33 | GPIO 13 | Standard GPIO |
+| Button Y | Pin 37 | GPIO 26 | Standard GPIO |
+| Start | Pin 36 | GPIO 16 | Standard GPIO |
+| Select (Hotkey) | Pin 38 | GPIO 12 | Critical: GPIO 20 conflicts with the I2S audio bus, so GPIO 12 is used instead. |
+| Button L (Left Shoulder) | Pin 3 | GPIO 2 | Clean I2C1 SDA pin (unused by SPI display and I2S audio) |
+| Button R (Right Shoulder) | Pin 5 | GPIO 3 | Clean I2C1 SCL pin (unused by SPI display and I2S audio) |    |
 
 # Section 3: Step-by-Step Software & Linux Kernel Configuration
 
